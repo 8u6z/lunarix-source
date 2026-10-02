@@ -1,0 +1,31 @@
+.status-dot {
+    position: absolute;
+    bottom: -6px;
+    right: -6px;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    border: 1px solid rgba(30, 30, 30);
+}
+.status-online { background-color: #00aaff; }
+.status-offline { background-color: gray; }
+.status-ingame { background-color: green; }
+.status-instudio { background-color: purple; }
+.status-invisible { background-color: black; }
+
+.avatar-wrapper {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 0.25rem;
+}
+
+.avatar-wrapper img {
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 576px) {
+    .avatar-wrapper {
+        max-width: 320px;
+    }
+}

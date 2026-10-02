@@ -1,0 +1,1 @@
+<span class="profile-avatar-status {{ $colorClass }}" title="{{ $label }}"></span>

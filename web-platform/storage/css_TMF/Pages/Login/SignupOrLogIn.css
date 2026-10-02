@@ -1,0 +1,368 @@
+.signup-or-log-in {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.signup-or-log-in h3 {
+	margin-left: 10px;
+	margin-top: 5px;
+	text-transform: none;
+}
+
+.signup-or-log-in h3.new-header {
+	text-transform: uppercase;
+	font-size: 24px;
+	margin-bottom: 10px;
+	line-height: 40px;
+	color: #191919;
+}
+
+.signup-or-log-in .title {
+	text-transform: none;
+}
+
+.signup-or-log-in .lrx-form-group {
+	margin-bottom: 0;
+}
+
+.signup-or-log-in .lrx-input-field {
+	height: 46px;
+	line-height: 1.33;
+	border-radius: 6px;
+	font-size: 20px;
+}
+
+.signup-or-log-in .fake-input-field {
+	height: 46px;
+}
+
+.signup-or-log-in .fake-input-lg {
+	font-size: 18px;
+}
+
+.signup-or-log-in .fake-input-lg label {
+	font-weight: 300;
+	padding: 5px 8px;
+}
+
+.signup-or-log-in p.lrx-control-label {
+	margin: 0;
+}
+
+.signup-or-log-in p.lrx-control-label.input-validation {
+	display: block;
+}
+
+.signup-or-log-in input[type=text] {
+	width: 100%;
+}
+
+.signup-or-log-in input[type=password] {
+	width: 100%;
+}
+
+.signup-or-log-in .signup-container {
+	height: auto;
+	padding: 10px;
+}
+
+.signup-or-log-in .signup-container .signup-input-area button#SignupButton {
+	width: 100%;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .birthday-container .lrx-select-group {
+	float: left;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .birthday-container .lrx-select-group.day {
+	padding-right: 5px;
+	width: 20%;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .birthday-container .lrx-select-group.month {
+	width: 33%;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .birthday-container .lrx-select-group.year {
+	width: 23%;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .birthday-container .lrx-select-group .lrx-select {
+	border-radius: 0;
+	background-position: 93% 10px;
+	background-position-x: "82%";
+	background-position-x: calc(100% - 2px);
+	background-position-y: 10px;
+	height: 44px;
+	border: 1px solid #b8b8b8;
+	border-width: 0 0 0 1px;
+	min-width: 70px;
+	width: 100%;
+	font-size: 18px;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .birthday-container .lrx-form-group.has-error .lrx-input-field {
+	border-color: #a94442;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .birthday-container .lrx-form-group.has-success .lrx-input-field {
+	border-color: #3c763d;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .birthday-container .fake-input-lg {
+	padding: 0;
+	height: 46px;
+	overflow: hidden;
+	clear: both;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .birthday-container .fake-input-lg label {
+	padding: 10px 10px;
+	float: left;
+	width: 24%;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .gender-container .fake-input-lg {
+	height: 46px;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .gender-container .fake-input-lg label {
+	position: relative;
+	width: 75px;
+	top: -10px;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .gender-container .fake-input-lg .gender-circle {
+	width: 32px;
+	height: 32px;
+	border-radius: 15px;
+	border: 1px solid #ccc;
+	display: inline-block;
+	margin-top: 0;
+	margin-right: 10%;
+	margin-left: 10%;
+	cursor: pointer;
+	outline: none;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .gender-container .fake-input-lg .gender-circle.selected-gender[name="genderFemale"] {
+	background-color: #fff;
+	border: 1px solid #fd8192;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .gender-container .fake-input-lg .gender-circle.selected-gender[name="genderFemale"] .cover-sprite.female {
+	background-position: -24px 0;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .gender-container .fake-input-lg .gender-circle.selected-gender[name="genderMale"] {
+	background-color: #fff;
+	border: 1px solid #66c7ff;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .gender-container .fake-input-lg .gender-circle.selected-gender[name="genderMale"] .cover-sprite.male {
+	background-position: -22px 0;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .gender-container .fake-input-lg .cover-sprite.gender {
+	margin: 3px 9px;
+	height: 26px;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .gender-container .fake-input-lg .cover-sprite.female {
+	background-position: 6.75px 0;
+	width: 28px;
+	margin-left: 0;
+}
+
+.signup-or-log-in .signup-container .signup-input-area .gender-container .fake-input-lg .cover-sprite.male {
+	background-position: 8px 0;
+	width: 28px;
+	margin-left: 0;
+}
+
+.signup-or-log-in .signup-container .switch-to-login-section {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 40px;
+	line-height: 40px;
+}
+
+.signup-or-log-in .signup-container .switch-to-login-section #switch-to-login {
+	float: right;
+}
+
+.signup-or-log-in .captcha-container {
+	padding-top: 20px;
+}
+
+.signup-or-log-in .captcha-container button#CaptchaSubmitButton {
+	width: 180px;
+	margin-top: 20px;
+	margin-left: 36px;
+}
+
+.signup-or-log-in .captcha-container button#captcha-back-button {
+	margin-top: 20px;
+	width: 133px;
+}
+
+.signup-or-log-in .captcha-container .captcha-response-message {
+	color: #d86868;
+	height: 20px;
+	margin-left: 38px;
+	margin-top: 5px;
+}
+
+.signup-or-log-in .captcha-container #recaptcha_area {
+	margin: 0 auto;
+}
+
+.signup-or-log-in .login-container {
+	padding: 10px;
+}
+
+.signup-or-log-in .login-container .login-input-area button {
+	width: 183px;
+	width: calc(50% - 2px);
+}
+
+.signup-or-log-in .login-container .two-step-verification-input-area {
+	padding-top: 30px;
+}
+
+.signup-or-log-in .login-container .two-step-verification-input-area #two-step-button {
+	width: 183px;
+}
+
+.signup-or-log-in .login-container .two-step-verification-input-area #two-step-back-button {
+	width: 183px;
+}
+
+.signup-or-log-in .input-validation {
+	height: 25px;
+}
+
+.signup-or-log-in .input-validation-large {
+	margin-top: 10px;
+}
+
+.signup-or-log-in .lrx-alert-warning {
+	width: 100%;
+	border-radius: 3px;
+}
+
+.signup-or-log-in .fb-login-container a.facebook-login {
+	color: white;
+	padding-top: 14px;
+	padding-bottom: 14px;
+	padding-left: 0;
+	text-align: center;
+	margin: 0 auto;
+	border-radius: 7px;
+	background-color: #3b5998;
+	display: block;
+	font-size: 21px;
+	background: #3b5998 url("../../../images/Landing/RollerCoaster/fb-icon.png") no-repeat;
+	background-position: 5% 12px;
+}
+
+.signup-or-log-in .fb-login-container a.facebook-login:hover {
+	background-color: #47639e;
+}
+
+.signup-or-log-in .fb-login-container .orcontainer {
+	margin: 0 auto;
+	margin-bottom: 16px;
+	margin-top: 16px;
+	clear: both;
+}
+
+.signup-or-log-in .fb-login-container .orcontainer .separator {
+	display: inline-block;
+	width: 121px;
+	width: calc(50% - 25px);
+	height: 1px;
+	margin-bottom: 4px;
+	padding-top: 0;
+	background-color: #b8b8b8;
+	color: transparent;
+	line-height: 1px;
+}
+
+.signup-or-log-in .fb-login-container .orcontainer .or {
+	position: static;
+	display: inline-block;
+	margin-right: 8px;
+	margin-left: 8px;
+	color: #b8b8b8;
+	font-size: 21px;
+	font-weight: 300;
+}
+
+.fb-signup-choose-username .signup-container .choose-username-label {
+	font-size: 18px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.fb-signup-choose-username .signup-container .lrx-form-group {
+	margin-bottom: 10px;
+}
+
+.fb-signup-choose-username .captcha-container button#CaptchaSubmitButton {
+	width: 100%;
+	margin-top: 20px;
+	margin-left: 0;
+}
+
+.fb-signup-choose-username .warning-message p {
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 14px;
+	margin: 0;
+	margin-top: 11px;
+}
+
+.fb-signup-choose-username .thumbnail-contianer {
+	width: 150px;
+	height: 150px;
+	background-color: #e3e3e3;
+	margin: 0 auto;
+	border: 5px solid #e3e3e3;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+
+@media(max-width:767px) {
+	.signup-or-log-in .gender-container .fake-input-lg label {
+		display: inline-block;
+	}
+
+	.signup-or-log-in .signup-container .signup-input-area .birthday-container .fake-input-lg {
+		height: auto;
+	}
+
+	.signup-or-log-in .signup-container .signup-input-area .birthday-container .fake-input-lg label {
+		float: none;
+		margin-bottom: 0;
+	}
+
+	.signup-or-log-in .signup-container .signup-input-area .birthday-container .lrx-select-group.day,
+	.signup-or-log-in .signup-container .signup-input-area .birthday-container .lrx-select-group.year {
+		width: 33%;
+	}
+
+	.signup-or-log-in .signup-container .signup-input-area .birthday-container .lrx-select-group.month {
+		width: 34%;
+	}
+
+	.signup-or-log-in .signup-container .signup-input-area .birthday-container .lrx-select-group .lrx-input-field.lrx-select {
+		border-width: 1px 1px 0 0;
+	}
+
+	.signup-or-log-in .signup-container .signup-input-area .birthday-container .lrx-select-group.year .lrx-input-field.lrx-select {
+		border-width: 1px 0 0 0;
+	}
+}

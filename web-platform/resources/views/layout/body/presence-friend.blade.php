@@ -1,0 +1,1 @@
+<span class="friend-status {{ $colorClass }}" title="{{ $label }}"></span>

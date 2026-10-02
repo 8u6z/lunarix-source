@@ -1,0 +1,7 @@
+*
+!.gitignore
+!ClientAppSettings.json
+!ClientSharedSettings.json
+!AndroidAppSettings.json
+!Baseplate.rbxl
+!hos.txt

@@ -1,0 +1,15 @@
+@verbatim
+<div>
+    <ul class="tab-container" ng-init="currentStatus.activeTab">
+        <li ng-repeat="tab in tabs | orderBy: tab.id"
+            ng-class="{'tab-active': currentStatus.activeTab == tab.name}"
+            ng-click="onClickTab(tab)">
+            <a class="lunarix-tab-link"
+               ui-sref="{{tab.name}}"
+               >{{tab.label}}</a>     
+            <span class="notifications-count" ng-show="tab.count">{{tab.count}}</span>
+        </li>
+
+    </ul>
+</div>
+@endverbatim

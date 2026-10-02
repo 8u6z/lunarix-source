@@ -1,0 +1,89 @@
+										<table class="section-header">
+											<tbody>
+												<tr>
+												    <a href="#" class="btn-medium btn-primary">Create New Place</a>
+													<td class="content-title">
+														<div>
+															<h2 class="header-text">Places</h2>
+															<span class="aside-text">0 of 10 active slots used</span>
+														</div>
+													</td>
+													<td>
+														<div class="creation-context-filters-and-sorts" data-fetchplaceurl="/build/gamesbycontext?groupId=">
+															<div class="option">
+																<label class="sort-label">Created by:</label>
+																<select class="place-creationcontext-drop-down" size="1">
+																	<option value="Me"> Me </option>
+																</select>
+															</div>
+															<div class="option">
+																<label class="checkbox-label active-only-checkbox"><input type="checkbox">Active First</label>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr class="creation-context-breadcrumb" style="display:none">
+													<td style="height:21px">
+														<div class="breadCrumb creation-context-breadcrumb"><a href="#breadcrumbs=gamecontext" class="breadCrumbContext">Context</a> <span class="context-game-separator" style="display:none"> » </span> <a href="#breadcrumbs=game" class="breadCrumbGame" style="display:none">Game</a></div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="items-container games-container">
+											<script>
+												function editGameInStudio(play_placeId) {
+													LunarixLaunch._GoogleAnalyticsCallback = function() {
+														var isInsideLunarixIDE = 'website';
+														if (Lunarix && Lunarix.Client && Lunarix.Client.isIDE && Lunarix.Client.isIDE()) {
+															isInsideLunarixIDE = 'Studio';
+														};
+														GoogleAnalyticsEvents.FireEvent(['Plugin Location', 'Launch Attempt', isInsideLunarixIDE]);
+														GoogleAnalyticsEvents.FireEvent(['Plugin', 'Launch Attempt', 'Edit']);
+														EventTracker.fireEvent('GameLaunchAttempt_Win32', 'GameLaunchAttempt_Win32_Plugin');
+														if (typeof Lunarix.GamePlayEvents != 'undefined') {
+															Lunarix.GamePlayEvents.SendClientStartAttempt(null, play_placeId);
+														}
+													};
+													Lunarix.Client.WaitForLunarix(function() {
+														Lunarix.VideoPreRoll.showVideoPreRoll = false;
+														LunarixLaunch.StartGame('http://www.lunarix.com//Game/edit.ashx?placeId=' + play_placeId , 'edit.ashx', 'https://www.lunarix.com//Login/Negotiate.ashx', 'FETCH', true)
+													});
+												}
+											</script><span id="verifiedEmail" style="display:none"></span> <span id="assetLinks" style="display:none" data-asset-links-enabled="True"></span>
+											@forelse ($assets as $asset)
+											<table class="item-table" data-item-id="{{ $asset->id }}" data-type="game" data-universeid="{{ $asset->id }}">
+												<tbody>
+													<tr>
+														<td class="image-col"><a href="/games/{{ $asset->id }}/{{ $asset->getSlug() }}" class="game-image"> <img src="/img/ph/user_placeholder.png" alt="{{ $asset->name }}"> </a></td>
+														<td class="name-col">
+															<a class="title" href="/games/{{ $asset->id }}/{{ $asset->getSlug() }}">{{ $asset->name }}</a>
+															<table class="details-table">
+																<tbody>
+																	<tr>
+																		<td class="activate-cell"><a class="place-inactive" href="/universes/configure?id=1">Inactive</a></td>
+																		<td class="item-date"><span>Updated: {{ $asset->updated_at->format('n/j/Y') }}</span></td>
+																	</tr>
+																</tbody>
+															</table>
+														</td>
+														<td class="stats-col-games">
+															<div class="totals-label">Total Visitors:<span>{{ $asset->visits ?? 0 }}</span></div>
+															<div class="totals-label">Last 7 days:<span>0</span></div>
+														</td>
+														<td class="edit-col"><a class="lunarix-edit-button btn-control btn-control-large" href="javascript:">Edit</a></td>
+														<td class="build-col"><a class="lunarix-build-button btn-control btn-control-large" href="javascript:">Build</a></td>
+														<td class="menu-col">
+															<div class="gear-button-wrapper"><a href="#" class="gear-button"></a></div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											@unless ($loop->last)
+										        <div class="separator"></div>
+										    @endunless
+											@empty
+											@endforelse
+										</div>
+										<div class="build-loading-container" style="display:none">
+											<div class="buildpage-loading-container"><img alt="^_^" src="https://images.lrxcdn.com/ec4e85b0c4396cf753a06fade0a8d8af.gif"></div>
+										</div>

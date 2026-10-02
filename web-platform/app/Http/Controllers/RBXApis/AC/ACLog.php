@@ -1,0 +1,93 @@
+<?php
+namespace App\Http\Controllers\RBXApis\AC;
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\PlaceTicket;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
+class ACLog extends Controller
+{
+    public function log(Request $request): JsonResponse
+    {
+        $apiKey = $request->header('X-API-Key');
+        if (!$apiKey || !hash_equals((string) config('services.anticheat.key'), (string) $apiKey)) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+        $ticketValue = $request->header('X-Client-Ticket');
+        if (!$ticketValue) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+        $ticket = PlaceTicket::where('ticket', $ticketValue)->first();
+        if (!$ticket) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+        $user = User::find($ticket->user_id);
+        if (!$user) {
+            $ticket->delete();
+            return response()->json(['message' => 'User not found'], 404);
+        }
+        $ticket->delete();
+        $isMultipart = $request->hasFile('dll_file') || $request->has('injector_path');
+        $type = (string) $request->input('type', 'N/A');
+        $detected = (string) $request->input('detected', 'N/A');
+        $dllName = (string) $request->input('dll', 'N/A');
+        $dllPath = (string) $request->input('path', 'N/A');
+        $sha256 = (string) $request->input('sha256', 'N/A');
+        $injectorPath = (string) $request->input('injector_path', '');
+        $dllDownloadUrl = null;
+        $exeDownloadUrl = null;
+        $exeName = null;
+        if ($request->hasFile('dll_file')) {
+            $dllFile = $request->file('dll_file');
+            $dllHash = $sha256 !== '' && $sha256 !== 'N/A' ? strtolower($sha256) : hash_file('sha256', $dllFile->getRealPath());
+            $storedDllName = $dllName !== '' && $dllName !== 'N/A' ? $dllName : $dllFile->getClientOriginalName();
+            $dllKey = "flagged-dlls/{$dllHash}/{$storedDllName}";
+            Storage::disk('ac_dumps')->put($dllKey, file_get_contents($dllFile->getRealPath()));
+            $dllDownloadUrl = rtrim(config('filesystems.disks.ac_dumps.url'), '/') . '/' . $dllKey;
+        }
+        if ($request->hasFile('injector_file')) {
+            $exeFile = $request->file('injector_file');
+            $exeHash = hash_file('sha256', $exeFile->getRealPath());
+            $exeName = $injectorPath !== '' ? basename(str_replace('\\', '/', $injectorPath)) : $exeFile->getClientOriginalName();
+            $exeKey = "flagged-exes/{$exeHash}/{$exeName}";
+            Storage::disk('ac_dumps')->put($exeKey, file_get_contents($exeFile->getRealPath()));
+            $exeDownloadUrl = rtrim(config('filesystems.disks.ac_dumps.url'), '/') . '/' . $exeKey;
+        }
+        $description = "## User Information\n"
+            . "**Username**: {$user->username}\n"
+            . "**UserID**: {$user->id}\n"
+            . "**Created At**: {$user->created_at}\n"
+            . "## Log Information\n"
+            . "**Violation Type**: {$type}\n"
+            . "**Detected**: {$detected}\n"
+            . "**DLL Name**: {$dllName}\n"
+            . "**DLL Path**: {$dllPath}\n"
+            . "**SHA256**: {$sha256}";
+        $embed = [
+            'color' => 16777215,
+            'title' => 'New Flag!',
+            'description' => $description,
+            'thumbnail' => ['url' => "https://lunarix.lol/Thumbs/Avatar.ashx?userId={$user->id}"],
+        ];
+        $buttons = [['type' => 2, 'style' => 5, 'label' => 'User Admin', 'url' => "https://lunarix.lol/administration/users/{$user->id}"]];
+        if ($dllDownloadUrl) {
+            $buttons[] = ['type' => 2, 'style' => 5, 'label' => 'Download DLL', 'url' => $dllDownloadUrl];
+        }
+        if ($exeDownloadUrl) {
+            $buttons[] = ['type' => 2, 'style' => 5, 'label' => 'Download Executable (!!!)', 'url' => $exeDownloadUrl];
+        }
+        $components = [['type' => 1, 'components' => $buttons]];
+        $webhookUrl = config('services.anticheat.webhook');
+        $response = Http::post($webhookUrl, ['embeds' => [$embed], 'components' => $components]);
+        if ($response->failed()) {
+            Log::warning('Anti-cheat Discord webhook failed', ['status' => $response->status(), 'body' => $response->body()]);
+        }
+        return response()->json(['success' => 'true'], 200);
+    }
+}

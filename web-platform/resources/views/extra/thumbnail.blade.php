@@ -1,0 +1,5 @@
+@verbatim
+<div>
+        <img title="{{title}}" alt="{{title}}" border="0" ng-src="{{thumbnailUrl}}">
+</div>
+@endverbatim

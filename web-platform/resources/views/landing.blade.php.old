@@ -1,0 +1,338 @@
+@extends('layout.root')
+@section('content')
+<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=leanbase___71f465fc3508bdea4bb0caae519e9836_m.css' />
+<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___87d690102e690d673871bd2c937b165d_m.css' />
+<script type='text/javascript' src='https://js.lunarix.pw/35442da4b07e6a0ed6b085424d1a52cb.js'></script>
+<script type='text/javascript' src='https://js.lunarix.pw/93a9c1615db9841bce7d67bdb087d3da.js'></script>
+<script type='text/javascript' src='https://js.lunarix.pw/8030e8e1027b814be8f4e744ba54f78c.js'></script>
+<script type='text/javascript' src='https://js.lunarix.pw/19afbd433dd652459d42fb238f694071.js'></script>
+@if(config('services.turnstile.enabled'))
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+@endif
+<div id="fb-root"></div>
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>    
+    
+
+
+<style type="text/css">
+    .coverSprite {
+        background-repeat: no-repeat;
+        background-image: url('https://cdn.lunarix.pw/20e7d1543d2c5caf201184d86530fc35.png');
+    }
+
+    #RollerContainer {
+        {{-- background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/img/cyberareaBG.png'); --}}
+        background-image: url('/img/cyberareaBG.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .special-dropdown select {
+        border: 0 !important;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: url('https://cdn.lunarix.pw/379f4f1018f31cbb62ef52a22d9f2118.png') no-repeat;
+        background-position: 92% 40%;
+        width: 100px;
+        text-indent: 0.01px;
+        text-overflow: "";
+    }
+    #InnerWhatsLunarixContainer1 {
+        height: 70%;
+        background-image: url('/img/NeuroCyberspace.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 30% center;
+        color: white;
+    }
+    #GameImage1 {
+        background-image: url('https://cdn.lunarix.pw/42268b6264d89827401ef912f174f288.jpg');
+        margin-right: 5px;
+    }
+
+    #GameImage2 {
+        background-image: url('https://cdn.lunarix.pw/04baeb33ef66ef1395cd5464309fece6.jpg');
+        margin-right: 5px;
+    }
+
+    #GameImage3 {
+        background-image: url('https://cdn.lunarix.pw/e8b89d14690203420d64b5b2fda0b461.jpg');
+        margin-right: -10px;
+        width: calc(33.333333% - 10px);
+    }
+</style>
+<div class="navbar navbar-landing navbar-fixed-top" role="navigation" ng-modules="lunarixApp, LandingSignup">
+    <div class="container">
+        <div class="row">
+            <div class="navbar-header col-md-6">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#LandingNavbar">
+                    Log In
+                </button>
+                <div class="navbar-brand hidden-xs"><img class="lunarixLogo" src="/favicon.ico" /></div>
+                <ul id="TopLeftNavLinks" class="nav navbar-nav">
+                    <li id="PlayLink" class="pull-left"><a href="#RollerContainer" onclick="return scrollTo(1, '#RollerContainer');">Play</a></li>
+                    <li id="AboutLink" class="pull-left"><a href="#WhatsLunarixContainer" onclick="return scrollTo(2, '#WhatsLunarixContainer');">About</a></li>
+                    <li id="PlatformLink" class="pull-left"><a href="#LunarixDeviceText" onclick="return scrollTo(3, '#LunarixDeviceText');">Platforms</a></li>
+                    <li id="magic-line"></li>
+                </ul>
+            </div>
+
+            <div class="collapse navbar-collapse col-sm-6" id="LandingNavbar" ng-controller="LoginController">
+                <form name="loginForm" action="{{ url('/login') }}" id="LogInForm" class="navbar-form form-inline navbar-right" ng-submit="submitLogin($event)" method="post" role="form" data-use-apiproxy-signin="False" data-sign-on-api-path="{{ url('/login/v1') }}" novalidate>
+                    @csrf
+                    <div class="form-group" ng-class="{ 'has-error': loginForm.username.$invalid && badSubmit}">
+                        <input id="LoginUsername" type="text" placeholder="Username" class="form-control" name="username" ng-required="true" ng-model="login.username" />
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': loginForm.password.$invalid && badSubmit}">
+                        <input id="LoginPassword" type="password" placeholder="Password" class="form-control" name="password" ng-required="true" ng-model="login.password" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" id="LoginButton" class="form-control" value="Log In" />
+                    </div>
+                    <a id="HeaderForgotPassword" class="navbar-link" href="/Login/ResetPasswordRequest.aspx">Forgot Username/Password?</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" ng-modules="lunarixApp, LandingSignup">
+    <!-- Roller Coaster-->
+    <section class="row full-height-section" id="RollerContainer">
+        <div class="col-md-12 inner-full-height-section" id="InnerRollerContainer">
+            <div id="MainCenterContainer" class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div id="MainLogo" class="text-right">
+                        <div id="LogoAndSlogan" class="text-center">
+                            <img id="MainLogoImage" title="Lunarix" class="center-block img-responsive" style="margin-bottom: 20px;" src="/img/logo_full.png" />
+                            <div class="clearfix"></div>
+                            <h1 style="margin-bottom: 5px">Be Anything, Build Anything<span> &#8482 </span></h1>
+                        </div>
+                    </div>
+                </div>
+                
+                
+
+<!-- Modal -->
+<div id="BootstrapConfirmationModal" data-modal-handle="bootstrap-confirmation" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="lunarix-close-btn" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <div class="ImageContainer lunarix-item-image" data-image-size="small" data-no-overlays data-no-click>
+                    <img class="GenericModalImage" alt="generic image" />
+                </div>
+                <p class="modal-body-text"></p>
+                <p id="lunarix-captcha-error" class="text-center text-danger"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="lunarix-decline-btn" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="lunarix-confirm-btn" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<script type="text/javascript">
+    Lunarix = Lunarix || {};
+    Lunarix.Resources = Lunarix.Resources || {};
+
+    //<sl:translate>
+    Lunarix.Resources.GenericConfirmation = {
+        yes: "Yes",
+        No: "No",
+        Confirm: "Confirm",
+        Cancel: "Cancel"
+    };
+    //</sl:translate>
+</script>
+
+                <div class="clearfix visible-sm"></div>
+                <div class="col-xs-12 col-md-6">
+                    <div id="SignUpFormContainer" class="" ng-controller="SignUpController">
+                        <form action="{{ url('/landing/signup') }}" name="signupForm" id="SignUpForm" method="post" role="form" ng-submit="submitSignup($event)" novalidate autocomplete="off">
+                            @csrf
+                            <h3 class="text-left">Sign up and start having fun!</h3>
+                            @if(env('LUNARIX_CREATE_ACCOUNT', false))
+                            <div class="form-group" ng-class="{ 'has-error': (badSubmit && signupForm.userName.$invalid) || signupForm.userName.$showError, 'has-success': signupForm.userName.$showSuccess  }">
+                                <input id="SignupUsername" ng-model="signup.username" type="text" name="userName" class="form-control input-lg" placeholder="Username (3-20 characters, no spaces)" ng-maxlength="20" maxlength="20" ng-required="true" lrx-valid-username lrx-show-error autocomplete="off" autofocus="autofocus" data-last-username="" />
+                                <div id="UsernameError" class="text-danger" ng-cloak ng-show="signupForm.userName.$showError" ng-bind="signupForm.userName.$usernameMessage"></div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error': (badSubmit && signupForm.password.$invalid) || signupForm.password.$showError, 'has-success': signupForm.password.$showSuccess  }">
+                                <input id="SignupPassword" ng-model="signup.password" type="password" name="password" class="form-control input-lg" placeholder="Password (4 letters and 2 numbers minimum)" ng-required="true" autocomplete="off" lrx-show-error lrx-valid-password data-last-password="" />
+                                <div id="PasswordError" class="text-danger" ng-cloak ng-show="signupForm.password.$showError" ng-bind="signupForm.password.$passwordMessage"></div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error': (badSubmit && signupForm.passwordConfirm.$invalid) || signupForm.passwordConfirm.$showError, 'has-success': signupForm.passwordConfirm.$showSuccess  }">
+                                <input id="SignupPasswordConfirm" ng-model="signup.passwordConfirm" type="password" name="passwordConfirm" class="form-control input-lg" placeholder="Confirm Password" ng-required="true" match="signup.password" autocomplete="off" lrx-show-error lrx-valid-password-confirm data-last-password="" />
+                                <div id="PasswordConfirmError" class="text-danger" ng-cloak ng-show="signupForm.passwordConfirm.$showError" ng-bind="signupForm.passwordConfirm.$passwordConfirmMessage"></div>
+                            </div>
+                            @if(config('app.access_key_enabled'))
+                            <div class="form-group" ng-class="{ 'has-error': (badSubmit && signupForm.passwordConfirm.$invalid) || signupForm.passwordConfirm.$showError, 'has-success': signupForm.passwordConfirm.$showSuccess  }">
+                                <input id="AccessKey" ng-model="signup.accesskey" type="text" name="accesskey" class="form-control input-lg" placeholder="Access Key" ng-required="true" match="signup.accesskey" autocomplete="off" lrx-show-error lrx-valid-accesskey data-last-accesskey="" />
+                            </div>
+                            @endif
+                            <div class="form-group" ng-class="{'has-error': badSubmit && !validBirthday(), 'has-success':validBirthday()}">
+                                <div class="form-control fake-input-lg form-inline">
+                                    <label>Birthday</label>
+                                    <input name="lstMonths" ng-value="submitMonth()" type="hidden" />
+                                    <input name="lstDays" ng-value="signup.birthdayDay" type="hidden" />
+                                    <input name="lstYears" ng-value="signup.birthdayYear" type="hidden" />
+                                    <div class="special-dropdown month-special-dropdown">
+                                        <select id="birthdayMonthSelect" ng-model="signup.birthdayMonth" ng-required="true" autocomplete="off" data-last-selected="">
+                                            <option value="">Month</option>
+                                            <option value="0">January</option>
+                                            <option value="1">February</option>
+                                            <option value="2">March</option>
+                                            <option value="3">April</option>
+                                            <option value="4">May</option>
+                                            <option value="5">June</option>
+                                            <option value="6">July</option>
+                                            <option value="7">August</option>
+                                            <option value="8">September</option>
+                                            <option value="9">October</option>
+                                            <option value="10">November</option>
+                                            <option value="11">December</option>
+                                        </select>
+                                    </div>
+                                    <div class="special-dropdown day-special-dropdown">
+                                        <select id="birthdayDaySelect" ng-model="signup.birthdayDay" ng-options="day for day in days" ng-required="true" autocomplete="off" data-last-selected="">
+                                            <option value="">Day</option>
+                                        </select>
+                                    </div>
+                                    <div class="special-dropdown year-special-dropdown">
+                                        <select id="birthdayYearSelect" ng-model="signup.birthdayYear" ng-options="year for year in years" ng-required="true" autocomplete="off" data-last-selected="">
+                                            <option value="">Year</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': badSubmit && !validGender(), 'has-success':validGender()}">
+                                <div class="form-control fake-input-lg">
+                                    <input type="hidden" id="GenderInput" name="gender" ng-value="signup.gender" data-last-gender-male="False" data-last-gender-female="False" />
+                                    <div class="pull-left"><label>Gender:</label></div>
+                                    <div title="Female" class="gender-circle" tabindex="0" ng-class="{'selected-gender': signup.gender === 'female'}" ng-click="selectFemale()">
+                                        <div class="coverSprite gender female"></div>
+                                    </div>
+                                    <div title="Male" class="gender-circle" tabindex="0" ng-class="{'selected-gender': signup.gender === 'male'}" ng-click="selectMale()">
+                                        <div class="coverSprite gender male"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            @if(config('services.turnstile.enabled'))
+                            <div class="form-group">
+                                <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.site_key') }}" data-theme="dark"></div>
+                            </div>
+                            @endif
+                            <div class="form-group">
+                                @if(config('services.turnstile.enabled'))
+                                <input id="SignUpButton" type="submit" class="form-control input-lg submit sign-up-button" value="Sign Up" disabled ng-disabled="submitButtonDisabled">
+                                @else
+                                <input id="SignUpButton" type="submit" class="form-control input-lg submit sign-up-button" value="Sign Up">
+                                @endif
+                            </div>
+                            @endif
+                            @if(!env('LUNARIX_CREATE_ACCOUNT', false))
+                            <div class="text-center text-danger" role="alert">Sign ups are currently disabled.</div>
+                            @endif
+                            <noscript>
+                                <div class="text-danger">
+                                    <strong>JavaScript is required to submit this form.</strong>
+                                </div>
+                            </noscript>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="attribution hidden-xs">
+            <span class="notranslate">Image: Neuro Cogs</span><br>
+            Artist: <span class="notranslate">@fFrequence (vedal.ai)</span>
+        </div>
+    </section>
+    <!-- What is Lunarix -->
+    <section class="row full-height-section" id="WhatsLunarixContainer">
+
+        <div class="col-md-12 inner-full-height-section">
+
+            <div class="row" id="InnerWhatsLunarixContainer1">
+                <div id="WhatIsLunarixTextBg" class="col-sm-5 col-sm-offset-6 col-xs-8 col-xs-offset-2">
+                    <h1 class="text-center">What is Lunarix?</h1>
+                    <p class="lead text-justify">Lunarix is a Platform Powered by the community. You can build your own multi-player game, publish and share it to your friends, check what others have created and most importantly <b>play with friends</b>.</p>
+                </div>
+            </div>
+
+            <div class="row" id="InnerWhatsLunarixContainer2">
+                <div id="GameImage1" class="col-sm-4 col-xs-12 game-image"></div>
+                <div id="GameImage2" class="hidden-xs col-sm-4 game-image"></div>
+                <div id="GameImage3" class="col-sm-4 hidden-xs game-image"></div>
+            </div>
+
+        </div>
+    </section>
+    <div class="clearfix"></div>
+
+    <!-- Lunarix on your device -->
+    <section id="DeviceSection">
+        <div class="row" id="LunarixDeviceText">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <h2>Lunarix on your device.</h2>
+                <p class="lead center-block">Play Lunarix on your desktop, your tablet, or your phone. Access your account, games, and inventory; connect with your friends; and play games whether you're at home or on the go.</p>
+            </div>
+        </div>
+
+        <div id="AppStoreContainer" class="row text-center">
+            <a href="/download" target="_blank">
+                <img class="app-store-logo" src="/img/windows.png" title="Lunarix on Windows" />
+            </a>
+            <a href="/download" target="_blank">
+                <img class="app-store-logo" src="/img/linux.png" title="Lunarix on Linux" />
+            </a>
+            <a href="/download" target="_blank">
+                <img class="app-store-logo" src="/img/android.png" title="Lunarix on Android" />
+            </a>
+            <a href="/download" target="_blank">
+                <img class="app-store-logo" src="/img/ios.png" title="Lunarix on iOS" />
+            </a>
+        </div>
+
+        <div class="row" id="DeviceImageContainer">
+            <!-- <div class="col-md-12">
+                <div class="row text-center">
+                     <img id="ComputerImgSmall" class="center-block img-responsive hidden-lg ComputerImg" src="https://cdn.lunarix.pw/5ed7d6f37de88cc74c581d9a97fdcbb2.png" />
+                    <img class="center-block img-responsive visible-lg-block ComputerImg" src="https://cdn.lunarix.pw/6288b7c9683f37f50efef75a5e10f2ad.png" />
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+    <footer class="row">
+        <div class="col-xs-12">
+            <div id="FooterBigLinks" class="row">
+                <div class="col-md-12 text-center">
+                    <a href="//corp.{{ config('app.base_url_nohttp') }}" target="_blank">About Us</a>
+                    <a href="//corp.{{ config('app.base_url_nohttp') }}/jobs" target="_blank">Jobs</a>
+                    <a href="//blog.{{ config('app.base_url_nohttp') }}" target="_blank">Blog</a>
+                    <a href="/Info/Privacy.aspx" target="_blank">Privacy</a>
+                    <a href="//corp.{{ config('app.base_url_nohttp') }}/parents" target="_blank">Parents</a>
+                    <a href="//en.help.{{ config('app.base_url_nohttp') }}/" target="_blank">Help</a>
+                </div>
+            </div>
+            <div class="row">
+                <div id="FooterLegalText" class="col-xs-11 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-justify">
+                Lunarix, "Be Anything, Build Anything" is an independent community-made platform made by <a target="_blank" href="#" class="lrx-link lunarix-interstitial">Sukaira's Fridge</a>. Lunarix is not sponsored, authorized or endorsed by corporations or companies in any way, shape or form. Use of this site signifies your acceptance of the <a href="/info/terms-of-service" target="_blank" class="lrx-link">Terms and Conditions</a>.
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+@endsection
